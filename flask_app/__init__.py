@@ -1,7 +1,10 @@
-from flask import Flask
-from app.view import init_app
-from flask_cors import CORS
+from .post_views import post_routes
+from .get_views import get_routes 
+from .patch_views import patch_routes
+from .delete_views import delete_routes
 
-app = Flask(__name__)
-init_app(app)
-CORS(app)
+def init_app(app):
+    post_routes(app)
+    get_routes(app)
+    patch_routes(app)
+    delete_routes(app)

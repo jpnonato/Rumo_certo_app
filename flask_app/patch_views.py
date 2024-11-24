@@ -1,10 +1,6 @@
 from flask import request
-from app.controller.activity_controller import update_activity
-from app.controller.volunteers_controller import update_volunteer
-from app.controller.Admins_controller import update_admin
-from app.controller.donations_controller import update_donation
-from app.controller.beneficiaries_controller import update_beneficiary
-from app.controller.page_content_controller import update_page_content
+
+from .controller import update_activity, update_volunteer, update_admin, update_beneficiary, update_page_content
 
 
 def patch_routes(app):
@@ -23,11 +19,6 @@ def patch_routes(app):
     def update_admin_route():
         data = request.get_json()
         return update_admin(data)
-
-    @app.patch('/donation')
-    def patch_donation():
-        data = request.get_json()
-        return update_donation(data)
 
     @app.patch('/beneficiary')
     def patch_beneficiary():

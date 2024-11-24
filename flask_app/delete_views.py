@@ -1,10 +1,6 @@
 from flask import request
 
-from app.controller.activity_controller import delete_activity
-from app.controller.beneficiaries_controller import delete_beneficiary
-from app.controller.volunteers_controller import delete_volunteer
-from app.controller.Admins_controller import delete_admin
-from app.controller.donations_controller import delete_donation
+from .controller import delete_activity, delete_beneficiary, delete_volunteer, delete_admin
 
 
 def delete_routes(app):
@@ -28,8 +24,3 @@ def delete_routes(app):
     def delete_admin_route():
         data = request.get_json()
         return delete_admin(data)
-
-    @app.delete('/donation')
-    def remove_donation():
-        data = request.get_json()
-        return delete_donation(data)

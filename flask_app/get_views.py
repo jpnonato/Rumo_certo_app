@@ -1,10 +1,7 @@
 from flask import request
-from app.controller.page_content_controller import get_available_page_content
-from app.controller.activity_controller import get_available_activities, get_available_activity
-from app.controller.Admins_controller import get_available_admins, get_avaliable_admin
-from app.controller.donations_controller import get_available_donation, get_available_donations
-from app.controller.beneficiaries_controller import get_available_beneficiaries, get_available_beneficiary
-from app.controller.volunteers_controller import get_available_volunteers, get_available_volunteer
+
+from .controller import get_available_activities, get_available_activity, get_available_page_content, get_available_admins, get_avaliable_admin, get_available_beneficiaries, get_available_beneficiary, get_available_volunteers, get_available_volunteer
+
 
 def get_routes(app):
     
@@ -25,15 +22,6 @@ def get_routes(app):
     @app.get('/admins')
     def get_admins():
         return get_available_admins()
-
-    @app.get('/donation')
-    def get_donation():
-        data = request.get_json()
-        return get_available_donation(data)
-    
-    @app.get('/donations')
-    def get_donations():
-        return get_available_donations()
 
     @app.get('/beneficiaries')
     def get_beneficiaries():
