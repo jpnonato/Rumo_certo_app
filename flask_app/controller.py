@@ -36,8 +36,8 @@ collections = {
 
 available_content_data_keys = default_content_data.keys()
 
-DEFAULT_ADMIN_MAIL= '0123'
-DEFAULT_ADMIN_PASSWORD= 'admin_default@mail.com.br'
+DEFAULT_ADMIN_MAIL= 'admin_default@mail.com.br'
+DEFAULT_ADMIN_PASSWORD= '0123'
 
 if DEFAULT_ADMIN_MAIL and DEFAULT_ADMIN_PASSWORD:
     default_admin = {
