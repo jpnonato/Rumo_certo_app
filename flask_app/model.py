@@ -131,17 +131,16 @@ class Volunteer():
         self.nome = kwargs['nome'].title()
         self.email = kwargs['email']
         self.telefone = kwargs['telefone']
-        self.senha = kwargs["senha"]
         self.data_registro = datetime.now().strftime("%d/%m/%Y - %H:%M")
 
     @staticmethod
     def verify_new_volunteer_data(data: dict):
 
-            available_keys = ['nome', 'email','telefone', 'senha']
+            available_keys = ['nome', 'email','telefone']
 
             data_keys = data.keys()
 
-            if len(data_keys) < 4:
+            if len(data_keys) < 3:
                 return f'há campos faltantes no corpo da requisição.'
 
             wrong_keys = [key for key in data_keys if key not in available_keys]
