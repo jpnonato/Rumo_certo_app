@@ -96,7 +96,8 @@ def insert_new_activity(data):
 
     volunteers_data = data.get('voluntario')
     for volunteer_name in volunteers_data:
-        is_registered_volunteer = volunteer_collection.find_one({'nome': volunteer_name})
+        print('------------------------------->>>', volunteer_name.title())
+        is_registered_volunteer = volunteer_collection.find_one({'nome': volunteer_name.title()})
         if not is_registered_volunteer:
             return "Voluntário não registrado!", 400
         
