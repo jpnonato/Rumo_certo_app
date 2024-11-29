@@ -94,12 +94,19 @@ def insert_new_activity(data):
     if is_wrong_data: 
         return is_wrong_data, 400
 
-    volunteers_data = data.get('voluntario')
+    beneficiaries_data = data.get('beneficiados')
+    volunteers_data = data.get('voluntarios')
+
     for volunteer_name in volunteers_data:
-        print('------------------------------->>>', volunteer_name.title())
         is_registered_volunteer = volunteer_collection.find_one({'nome': volunteer_name.title()})
         if not is_registered_volunteer:
             return "Voluntário não registrado!", 400
+    
+    if beneficiaries_data:
+        for beneficiary_name in beneficiaries_data:
+            is_registered_beneficiary = beneficiary_collection.find_one({'nome': beneficiary_name.title()})
+            if not is_registered_beneficiary:
+                return "Beneficiado não registrado!", 400
         
     activities_data = activity_collection.find({})
     is_inexistent_data = Activity.verify_if_exist_Activity_data(data.get('nome'), activities_data)
@@ -141,8 +148,8 @@ def update_activity(data: dict):
     if wrong_properties:
         return wrong_properties, 400
 
-    if data.get('voluntario'):
-        volunteers_data = data.get('voluntario')
+    if data.get('voluntarios'):
+        volunteers_data = data.get('voluntarios')
         volunteer_list = []
 
         for new_volunteer_name in volunteers_data:
@@ -155,9 +162,9 @@ def update_activity(data: dict):
 
 
     beneficiary_list = []
-    if data.get('beneficiado'):
+    if data.get('beneficiados'):
 
-        beneficiaries_data = [name for name in data.get('beneficiado') if name]
+        beneficiaries_data = [name for name in data.get('beneficiados') if name]
         if len(beneficiaries_data) > 0:
 
             for new_beneficiary_name in beneficiaries_data:

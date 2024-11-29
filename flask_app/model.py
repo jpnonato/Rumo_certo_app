@@ -6,8 +6,8 @@ class Activity():
         self.nome = kwargs['nome'].title()
         self.dia = kwargs['dia'].title()
         self.horario = kwargs['horario']
-        self.voluntarios = [x.title() for x in kwargs['voluntario']]
-        self.beneficiados = [x.title() for x in kwargs['beneficiado']] if kwargs['beneficiado'] else []
+        self.voluntarios = [x.title() for x in kwargs['voluntarios']]
+        self.beneficiados = [x.title() for x in kwargs['beneficiados']] if kwargs['beneficiados'] else []
         self.vagas = kwargs['vagas'] if kwargs['vagas'].isnumeric() else 'ilimitadas'
         self.imagem = kwargs['imagem']
         self.texto = kwargs['texto']
@@ -16,7 +16,7 @@ class Activity():
 
     @staticmethod
     def verify_new_activity_data(data: dict):
-        available_keys = ['nome', 'horario', 'dia', 'voluntario', 'vagas', 'beneficiado', 'imagem', 'texto']
+        available_keys = ['nome', 'horario', 'dia', 'voluntarios', 'vagas', 'beneficiados', 'imagem', 'texto']
 
         data_keys = data.keys()
 
@@ -28,7 +28,7 @@ class Activity():
         if wrong_keys:
             return f'Campos incorretos inseridos na requisição: {wrong_keys}'
         
-        none_values = {key for key in data if not data[key] and key not in ['imagem', 'texto', 'beneficiado', 'dia']}
+        none_values = {key for key in data if not data[key] and key not in ['imagem', 'texto', 'beneficiados', 'dia']}
 
         if none_values:
             return f'Foi atribuido um valor nulo nas seguintes propriedades: {none_values}'
