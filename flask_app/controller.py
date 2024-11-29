@@ -94,9 +94,11 @@ def insert_new_activity(data):
     if is_wrong_data: 
         return is_wrong_data, 400
 
-    is_registered_volunteer = volunteer_collection.find_one({'nome': data.get('voluntario')})
-    if not is_registered_volunteer:
-        return "Voluntário não registrado!", 400
+    volunteers_data = data.get('voluntario')
+    for volunteer_name in volunteers_data:
+        is_registered_volunteer = volunteer_collection.find_one({'nome': volunteer_name})
+        if not is_registered_volunteer:
+            return "Voluntário não registrado!", 400
         
     activities_data = activity_collection.find({})
     is_inexistent_data = Activity.verify_if_exist_Activity_data(data.get('nome'), activities_data)
