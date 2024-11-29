@@ -6,8 +6,8 @@ class Activity():
         self.nome = kwargs['nome'].title()
         self.dia = kwargs['dia'].title()
         self.horario = kwargs['horario']
-        self.voluntarios = [kwargs['voluntario']]
-        self.beneficiados = [kwargs['beneficiado']] if kwargs['beneficiado'] else []
+        self.voluntarios = [x.title() for x in kwargs['voluntario']]
+        self.beneficiados = [x.title() for x in kwargs['beneficiado']] if kwargs['beneficiado'] else []
         self.vagas = kwargs['vagas'] if kwargs['vagas'].isnumeric() else 'ilimitadas'
         self.imagem = kwargs['imagem']
         self.texto = kwargs['texto']
