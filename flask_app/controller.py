@@ -103,6 +103,7 @@ def insert_new_activity(data):
             return "Voluntário não registrado!", 400
     
     if beneficiaries_data:
+        print('========================================>', data.get('beneficiados'))
         for beneficiary_name in beneficiaries_data:
             is_registered_beneficiary = beneficiary_collection.find_one({'nome': beneficiary_name.title()})
             if not is_registered_beneficiary:
