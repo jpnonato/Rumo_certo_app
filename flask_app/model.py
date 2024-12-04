@@ -28,7 +28,7 @@ class Activity():
         if wrong_keys:
             return f'Campos incorretos inseridos na requisição: {wrong_keys}'
         
-        none_values = {key for key in data if not data[key] and key not in ['imagem', 'texto', 'beneficiados', 'dia']}
+        none_values = {key for key in data if not data[key] and key not in ['imagem', 'texto', 'beneficiados', 'dia', 'vagas']}
 
         if none_values:
             return f'Foi atribuido um valor nulo nas seguintes propriedades: {none_values}'
